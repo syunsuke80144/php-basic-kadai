@@ -3,32 +3,32 @@
 session_start();
 
 // POSTリクエストから入力データを取得
-$userName = $_POST['user_name'];
-$userAge = $_POST['user_age'];
+$employeeName = $_POST['employee_name'];
+$employeeAge = $_POST['employee_age'];
 $department = $_POST['department'];
 
 // エラーメッセージを格納する配列
 $errors = []; // 最初はエラーなし
 
-if(empty($userName)) {
+if(empty($employeeName)) {
   $errors[] = '名前を入力してください。';
 }
 
-if(empty($userAge)) {
+if(empty($employeeAge)) {
   $errors[] = '年齢を入力してください。';
-} elseif(!is_numeric($userAge)) {
+} elseif(!is_numeric($employeeAge)) {
   $errors[] = '年齢は数字で入力してください。';
 }
 
 if(empty($errors)) {
   // セッション変数を保存
-  $_SESSION['name'] = $userName;
-  $_SESSION['age'] = $userAge;
+  $_SESSION['name'] = $employeeName;
+  $_SESSION['age'] = $employeeAge;
   $_SESSION['department'] = $department;
 
   // クッキーを登録（有効期限は1時間）
-  setcookie('name', $userName, time() + 3600);
-  setcookie('age', $userAge, time() + 3600);
+  setcookie('name', $employeeName, time() + 3600);
+  setcookie('age', $employeeAge, time() + 3600);
 }
 
 ?>
@@ -49,11 +49,11 @@ if(empty($errors)) {
       </tr>
       <tr>
         <td>社員名</td>
-        <td><?php echo $userName; ?></td>
+        <td><?php echo $employeeName; ?></td>
       </tr>
       <tr>
         <td>年齢</td>
-        <td><?php echo $userAge; ?></td>
+        <td><?php echo $employeeAge; ?></td>
       </tr>
       <tr>
         <td>所属部署</td>
